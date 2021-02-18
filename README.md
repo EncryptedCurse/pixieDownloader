@@ -29,6 +29,6 @@ Just click the icon from the extensions menu on any Pixieset website.
 
 :white_large_square: &nbsp;&nbsp; Update to Manifest V3
 
-:white_large_square: &nbsp;&nbsp; Improve icon and add more sizes
+:white_check_mark:   &nbsp;&nbsp; Improve icon and add more sizes
 
 :white_large_square: &nbsp;&nbsp; Submit to Chrome Web Store
