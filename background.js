@@ -27,6 +27,7 @@ async function addB64(array) {
 		});
 	}
 
+	let i = 0;
 	// populate base64 fields in the JSON
 	for (let obj of array) {
 		console.log(`(${i++}/${array.length}) downloading ${obj.url} as ${obj.name}`);
