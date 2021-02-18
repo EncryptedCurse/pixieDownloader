@@ -1,5 +1,5 @@
 // run sender: extension executes its toolbar icon is clicked — sends a message to content.js
-chrome.browserAction.onClicked.addListener(
+chrome.action.onClicked.addListener(
 	tab => {
 		chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
 			chrome.tabs.sendMessage(tabs[0].id, { run: 'true' }, {});
@@ -9,36 +9,24 @@ chrome.browserAction.onClicked.addListener(
 
 
 async function addB64(array) {
-	let img = new Image();
-	img.crossOrigin = 'anonymous';
-	let canvas = document.createElement('canvas');
-	let context = canvas.getContext('2d');
+	// https://gist.github.com/HaNdTriX/bdffd11761701fbeba27f23e9a69515f
+	const toDataURL = url => fetch(url)
+		.then(response => response.blob())
+		.then(blob => new Promise((resolve, reject) => {
+			const reader = new FileReader();
+			reader.onloadend = () => resolve(reader.result);
+			reader.onerror = reject();
+			reader.readAsDataURL(blob);
+		}));
 
-	// encode image at the given URL into base64
-	function encode(url) {
-		return new Promise(resolve => {
-			img.onload = () => {
-				canvas.height = img.height;
-				canvas.width = img.width;
-				context.drawImage(img, 0, 0);
-				resolve(canvas.toDataURL('image/jpeg'));
-			}
-			img.src = url;
-		});
-	}
-
-	let i = 0;
+	let i = 1;
 	// populate base64 fields in the JSON
 	for (let obj of array) {
 		console.log(`(${i++}/${array.length}) downloading ${obj.url} as ${obj.name}`);
-
-		let encoding = await encode(obj.url);
-		// strip type from base64 string for JSZip
-		obj.base64 = encoding.split(',')[1];
+		await toDataURL(obj.url).then(encoding => {
+			obj.base64 = encoding.split(',')[1];
+		});
 	}
-
-	// cleanup
-	canvas = null;
 
 	return array;
 }

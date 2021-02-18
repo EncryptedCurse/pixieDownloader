@@ -66,7 +66,7 @@ function zip() {
 				{ base64: true }
 			));
 			// serve ZIP to user
-			download(albumZip, zipName, true);
+			download(albumZip, zipName, false);
 		}
 	);
 }
