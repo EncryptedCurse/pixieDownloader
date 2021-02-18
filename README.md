@@ -21,9 +21,14 @@ Just click the icon from the extensions menu on any Pixieset website.
 
 
 ## Todo
-* Add visual indicator of download progress
-* Remove `FileSaver.js` dependency
-* Possibly switch to a [`GET` API request to obtain image URLs](https://gitlab.com/wolkoman/pixieset-downloader/-/blob/master/index.js) instead of manually scraping
-* Update to Manifest V3
-* Improve icon and add more sizes
-* Submit to Chrome Web Store
+:white_large_square: &nbsp;&nbsp; Add visual indicator of download progress
+
+:white_check_mark:   &nbsp;&nbsp; Remove `FileSaver.js` dependency
+
+:white_large_square: &nbsp;&nbsp; Possibly switch to a [`GET` API request to obtain image URLs](https://gitlab.com/wolkoman/pixieset-downloader/-/blob/master/index.js) instead of manually scraping
+
+:white_large_square: &nbsp;&nbsp; Update to Manifest V3
+
+:white_large_square: &nbsp;&nbsp; Improve icon and add more sizes
+
+:white_large_square: &nbsp;&nbsp; Submit to Chrome Web Store

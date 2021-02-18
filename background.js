@@ -1,8 +1,8 @@
-// run the extension when the toolbar icon is clicked — sends a message to content.js
+// run sender: extension executes its toolbar icon is clicked — sends a message to content.js
 chrome.browserAction.onClicked.addListener(
-	function(tab) {
-		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-			chrome.tabs.sendMessage(tabs[0].id, {run: 'true'}, {});
+	tab => {
+		chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+			chrome.tabs.sendMessage(tabs[0].id, { run: 'true' }, {});
 		});
 	}
 );
@@ -14,6 +14,7 @@ async function addB64(array) {
 	let canvas = document.createElement('canvas');
 	let context = canvas.getContext('2d');
 
+	// encode image at the given URL into base64
 	function encode(url) {
 		return new Promise(resolve => {
 			img.onload = () => {
@@ -26,9 +27,10 @@ async function addB64(array) {
 		});
 	}
 
-	// encode each image and add a base64 field for it to the JSON
+	// populate base64 fields in the JSON
 	for (let obj of array) {
-		console.log('downloading ' + obj.url + ' as ' + obj.name);
+		console.log(`(${i++}/${array.length}) downloading ${obj.url} as ${obj.name}`);
+
 		let encoding = await encode(obj.url);
 		// strip type from base64 string for JSZip
 		obj.base64 = encoding.split(',')[1];
@@ -36,6 +38,7 @@ async function addB64(array) {
 
 	// cleanup
 	canvas = null;
+
 	return array;
 }
 
