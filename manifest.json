@@ -1,12 +1,12 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "pixieDownloader",
-	"version": "0.7.1",
+	"version": "0.9",
 	"icons": {
 		"128": "icon/icon_128.png"
 	},
 	"background": {
-		"scripts": [ "background.js" ]
+		"service_worker": "background.js"
 	},
 	"content_scripts": [
 		{
@@ -14,5 +14,5 @@
 			"js": ["lib/jsZip.min.js", "content.js"]
 		}
 	],
-	"browser_action": {}
+	"action": {}
 }
