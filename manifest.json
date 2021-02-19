@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "pixieDownloader",
-	"version": "0.9",
+	"version": "1.0",
 	"icons": {
 		"128": "icon/icon_128.png"
 	},

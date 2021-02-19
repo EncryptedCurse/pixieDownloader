@@ -1,26 +1,24 @@
 // run sender: extension executes its toolbar icon is clicked — sends a message to content.js
-chrome.action.onClicked.addListener(
-	tab => {
-		chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-			chrome.tabs.sendMessage(tabs[0].id, { run: 'true' }, {});
-		});
-	}
-);
+chrome.action.onClicked.addListener(tab => {
+	chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+		chrome.tabs.sendMessage(tabs[0].id, { run: 'true' }, {});
+	});
+});
 
 
 async function addB64(array) {
 	// https://gist.github.com/HaNdTriX/bdffd11761701fbeba27f23e9a69515f
 	const toDataURL = url => fetch(url)
 		.then(response => response.blob())
-		.then(blob => new Promise((resolve, reject) => {
+		.then(blob => new Promise(resolve => {
 			const reader = new FileReader();
 			reader.onloadend = () => resolve(reader.result);
-			reader.onerror = reject();
 			reader.readAsDataURL(blob);
-		}));
+		}))
+		.catch(error => { console.log(error); });
 
-	let i = 1;
 	// populate base64 fields in the JSON
+	let i = 1;
 	for (let obj of array) {
 		console.log(`(${i++}/${array.length}) downloading ${obj.url} as ${obj.name}`);
 		await toDataURL(obj.url).then(encoding => {
