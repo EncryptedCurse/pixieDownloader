@@ -132,6 +132,7 @@ function download(zip, name, ask) {
 			name = prompt('What should the name of the ZIP file be?', name);
 			if (name === null) {
 				setStatus('Cancelled', '#e71d1d');
+				running = false;
 				return;
 			};
 		}
