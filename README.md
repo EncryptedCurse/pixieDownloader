@@ -1,7 +1,7 @@
 # pixieDownloader
 Chrome extension to download all the images from a Pixieset album into a convenient ZIP.
 
-Though another `Pixieset downloader` extension exists on the [Chrome Web Store](https://chrome.google.com/webstore/detail/pixieset-downloader/bcipfhjikcfgalkfhocogafoebfbenle), it appears to be crippled by CORS and doesn't support custom domains (i.e. ones that aren't under `*.pixieset.com`).
+Though another `Pixieset downloader` extension exists on the [Chrome Web Store](https://chrome.google.com/webstore/detail/pixieset-downloader/bcipfhjikcfgalkfhocogafoebfbenle), it appears to be crippled by CORS and doesn't support custom domains.
 
 Uses the [JSZip](https://github.com/Stuk/jszip) library.
 
